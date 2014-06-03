@@ -1,0 +1,22 @@
+{
+    "name": "script-template",
+    "version": "1.0.0",
+    "author": "Samuel Neff <sam@serndesign.com> https://github.com/samuelneff",
+    "description": "Very simple template engine specifically made for generating JavaScript, TypeScript, or CoffeeScript using templates that are themselves valid scripts.",
+    "keywords": ["template", "script", "typescript", "javascript", "coffeescript"],
+    "homepage": "https://github.com/samuelneff/script-template",
+    "bugs": "https://github.com/samuelneff/script-template/issues",
+    "repository" : {
+        "type" : "git",
+        "url" : "https://github.com/samuelneff/script-template.git"
+    },
+    "dependencies" : { },
+    "devDependencies": {
+        "jasmine-node" : "1.14.3"
+    },
+    "analyze": true,
+    "license": "MIT",
+    "engines": {
+        "node": ">=0.10.26"
+    }
+}
