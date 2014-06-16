@@ -83,11 +83,11 @@ class ScriptTemplate
         //
         //    /*__each__ fields */ .. to end of line ..
         //
-        var re:RegExp = new RegExp("(\\r\\n|\\r|\\n)?([ \t]*)(?:/\\*)?[ \t]*__each__[ \t]*(\\w+)[ \t]*(?:\\*/)?[ \t]*([^\\r\\n]+)(\\r\\n|\\r|\\n)?", "g");
+        var re:RegExp = new RegExp("(\\r\\n|\\r|\\n)?([ \t]*)(?:/\\*)?[ \t]*__each__[ \t]*(\\w+)[ \t]*(,)?[ \t]*(?:\\*/)?[ \t]*([^\\r\\n]+)(\\r\\n|\\r|\\n)?", "g");
 
         var scriptTemplate:ScriptTemplate = this;
 
-        function replaceEach(match:string, eol1:string, spaceBefore:string, name:string, content:string, eol2:string):string
+        function replaceEach(match:string, eol1:string, spaceBefore:string, name:string, comma:string, content:string, eol2:string):string
         {
 
             var values:Array<Object> = data[name];
@@ -103,19 +103,23 @@ class ScriptTemplate
                 results.push(scriptTemplate.runData(content, values[i]));
             }
 
-            if (eol1 === undefined)
+            if (eol1 == undefined)
             {
                 eol1 = "";
+            }
+            if (comma == undefined)
+            {
+                comma = "";
             }
             if (spaceBefore == undefined)
             {
                 spaceBefore = "";
             }
-            if (eol2 === undefined)
+            if (eol2 == undefined)
             {
                 eol2 = "\r\n";
             }
-            return eol1 + spaceBefore + results.join(eol2 + spaceBefore) + eol2;
+            return eol1 + spaceBefore + results.join(comma + eol2 + spaceBefore) + eol2;
         }
 
         return source.replace(re, replaceEach);

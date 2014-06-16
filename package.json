@@ -1,6 +1,6 @@
 {
     "name": "script-template",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Samuel Neff <sam@serndesign.com> https://github.com/samuelneff",
     "description": "Very simple template engine specifically made for generating JavaScript, TypeScript, or CoffeeScript using templates that are themselves valid scripts.",
     "keywords": ["template", "script", "typescript", "javascript", "coffeescript"],

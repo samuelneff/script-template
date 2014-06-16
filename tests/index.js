@@ -122,6 +122,20 @@ describe("ScriptTemplate Tests", function () {
         expect(actual).toBe(expected);
     });
 
+    it("complex three each with comments and commas", function () {
+        var template = "this is before\r\n" + "/* __each__ names, */ __name__\r\n" + "this is after.";
+
+        var data = { names: [{ name: "John" }, { name: "Sam" }, { name: "George" }] };
+
+        var expected = "this is before\r\n" + "John,\r\nSam,\r\nGeorge\r\n" + "this is after.";
+
+        var eng = new ScriptTemplate(template);
+
+        var actual = eng.run(data);
+
+        expect(actual).toBe(expected);
+    });
+
     it("simple data", function () {
         var template = "Hello __who__!";
 
