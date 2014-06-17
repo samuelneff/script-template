@@ -1,24 +1,24 @@
 
 class ScriptTemplate
 {
-   constructor(public source:string)
-   {
+    constructor(public source:string)
+    {
         this.source = this.runIgnores(source);
-   }
+    }
 
-   run(data:Object):string
-   {
-       if (data == null)
-       {
-           return "";
-       }
+    run(data:Object):string
+    {
+        if (data == null)
+        {
+            return "";
+        }
 
-       var result:string = this.source;
-       result = this.runBlockEach(result, data);
-       result = this.runEach(result, data);
-       result = this.runData(result, data);
-       return result;
-   }
+        var result:string = this.source;
+        result = this.runBlockEach(result, data);
+        result = this.runEach(result, data);
+        result = this.runData(result, data);
+        return result;
+    }
 
     private runIgnores(source:string):string
     {
@@ -54,7 +54,7 @@ class ScriptTemplate
 
         function replaceBlockEach(match:string, name:string, content:string):string
         {
-            var values:Array<Object> = data[name];
+            var values:Array<Object> = ScriptTemplate.getValue(data, name);
 
             if (values == null || values.length == 0)
             {
@@ -90,7 +90,7 @@ class ScriptTemplate
         function replaceEach(match:string, eol1:string, spaceBefore:string, name:string, comma:string, content:string, eol2:string):string
         {
 
-            var values:Array<Object> = data[name];
+            var values:Array<Object> = ScriptTemplate.getValue(data, name);
 
             if (values == null || values.length == 0)
             {
@@ -131,14 +131,20 @@ class ScriptTemplate
 
         function replaceValue(match:string, name:string):string
         {
-            var value:any = data[name];
-
-            // .call() syntax is needed to maintain context
-            return typeof(value) == 'function' ? value.call(data, data) : data[name];
+            return ScriptTemplate.getValue(data, name);
         }
 
         return source.replace(re, replaceValue);
     }
+
+    private static getValue(data:Object, name:string):any
+    {
+        var value:any = data[name];
+
+        // .call() syntax is needed to maintain context
+        return typeof(value) == 'function' ? value.call(data, data) : data[name];
+    }
+
 }
 
 export = ScriptTemplate;

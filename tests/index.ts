@@ -385,13 +385,13 @@ describe("ScriptTemplate Tests", function() {
     });
 
 
-    it("context function", function()
+    it("complex function with two each", function()
     {
-        var template:string = "Hello __who__!";
+        var template:string = "__each__ name __who__!";
 
-        var data = {name: "World", who: function() { return this.name; }};
+        var data = {name: function() { return [{who: "1"}, {who: "2"}]}};
 
-        var expected:string = "Hello World!";
+        var expected:string = "1!\r\n2!\r\n";
 
         var eng:ScriptTemplate = new ScriptTemplate(template);
 
@@ -399,4 +399,37 @@ describe("ScriptTemplate Tests", function() {
 
         expect(actual).toBe(expected);
     });
+
+    it("simple two each", function()
+    {
+        var template:string = "__each__ names __name__";
+
+        var data = {names: [{name: "John"}, {name: "Sam"}]};
+
+        var expected:string = "John\r\nSam\r\n";
+
+        var eng:ScriptTemplate = new ScriptTemplate(template);
+
+        var actual:string = eng.run(data);
+
+        expect(actual).toBe(expected);
+    });
+
+    it("block each with function", function()
+    {
+        var template:string =   "__startEach__ names\r\n" +
+            "__name__\r\n" +
+            "__endEach__";
+
+        var data = {names: function() { return [{name: "John"}, {name: "George"}]}};
+
+        var expected:string = "John\r\nGeorge\r\n";
+
+        var eng:ScriptTemplate = new ScriptTemplate(template);
+
+        var actual:string = eng.run(data);
+
+        expect(actual).toBe(expected);
+    });
+
 });
