@@ -139,10 +139,10 @@ class ScriptTemplate
 
     private static getValue(data:Object, name:string):any
     {
-        var value:any = data[name];
+        var value:any = name == "this" ? data : data[name];
 
         // .call() syntax is needed to maintain context
-        return typeof(value) == 'function' ? value.call(data, data) : data[name];
+        return typeof(value) == 'function' ? value.call(data, data) : value;
     }
 
 }

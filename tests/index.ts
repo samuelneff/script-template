@@ -432,4 +432,23 @@ describe("ScriptTemplate Tests", function() {
         expect(actual).toBe(expected);
     });
 
+    it("simple this", function()
+    {
+        var template:string = "Hello __this__!";
+        var data:string = "Sam";
+        var expected:string = "Hello Sam!";
+        var eng:ScriptTemplate = new ScriptTemplate(template);
+        var actual:string = eng.run(data);
+        expect(actual).toBe(expected);
+    });
+
+    it("each with this", function()
+    {
+        var template:string = "__each__ this __this__";
+        var data:string[] = ["Sam", "John"];
+        var expected:string = "Sam\r\nJohn\r\n";
+        var eng:ScriptTemplate = new ScriptTemplate(template);
+        var actual:string = eng.run(data);
+        expect(actual).toBe(expected);
+    });
 });

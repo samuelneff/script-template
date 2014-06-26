@@ -295,5 +295,23 @@ describe("ScriptTemplate Tests", function () {
 
         expect(actual).toBe(expected);
     });
+
+    it("simple this", function () {
+        var template = "Hello __this__!";
+        var data = "Sam";
+        var expected = "Hello Sam!";
+        var eng = new ScriptTemplate(template);
+        var actual = eng.run(data);
+        expect(actual).toBe(expected);
+    });
+
+    it("each with this", function () {
+        var template = "__each__ this __this__";
+        var data = ["Sam", "John"];
+        var expected = "Sam\r\nJohn\r\n";
+        var eng = new ScriptTemplate(template);
+        var actual = eng.run(data);
+        expect(actual).toBe(expected);
+    });
 });
 //# sourceMappingURL=index.js.map

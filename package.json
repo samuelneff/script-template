@@ -14,7 +14,7 @@
     "devDependencies": {
         "jasmine-node" : "1.14.3"
     },
-    "analyze": true,
+    "main": "./lib/index",
     "license": "MIT",
     "engines": {
         "node": ">=0.10.26"
