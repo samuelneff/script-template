@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsamuelneff%2Fscript-template.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsamuelneff%2Fscript-template?ref=badge_shield)
+
 script-template
 ===============
 
@@ -45,3 +47,7 @@ __endEach__
 ```
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsamuelneff%2Fscript-template.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsamuelneff%2Fscript-template?ref=badge_large)
